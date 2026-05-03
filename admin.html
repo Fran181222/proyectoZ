@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malibu Joyeria | Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+  <div class="topbar">
+    <div class="container">
+      <span><i class="bi bi-shield-check me-2"></i>Vista interna de administracion para productos y sets.</span>
+      <span><i class="bi bi-window-stack me-2"></i>Todo resuelto en una sola pantalla y con preview rapido.</span>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg site-navbar">
+    <div class="container py-2">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-mark"><span class="sprite-icon sprite-diamond"></span></span>
+        Malibu Admin
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="adminNavbar">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="sets.html">Sets</a></li>
+          <li class="nav-item"><a class="nav-link" href="producto.html">Vista producto</a></li>
+        </ul>
+        <div class="nav-utility">
+          <a class="btn-mali btn-outline-mali" href="index.html"><i class="bi bi-arrow-left"></i>Tienda</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="admin-shell">
+    <div class="container">
+      <section class="admin-hero">
+        <article class="glass-panel admin-intro">
+          <div class="admin-intro-copy">
+            <p class="section-tag mb-3"><i class="bi bi-layout-text-sidebar-reverse"></i>Panel interno Malibu</p>
+            <h1 class="section-title mb-3">Una vista admin limpia para editar productos y crear sets.</h1>
+            <p class="section-copy mb-0">La idea es que entiendas rapido que campo llenar, sin menus extra ni pantallas separadas: editas producto, armas set y ves la previsualizacion al mismo tiempo.</p>
+          </div>
+          <div class="admin-metrics">
+            <div class="admin-metric">
+              <strong>02</strong>
+              <span>bloques principales</span>
+            </div>
+            <div class="admin-metric">
+              <strong>03</strong>
+              <span>imagenes del set</span>
+            </div>
+            <div class="admin-metric">
+              <strong>Live</strong>
+              <span>preview actualizado</span>
+            </div>
+          </div>
+        </article>
+
+        <aside id="adminGate" class="admin-login-card">
+          <p class="mini-label mb-2">Login administrador</p>
+          <h3 class="mb-3">Ingresar al panel</h3>
+          <p class="form-note mb-4">Es una maqueta funcional: valida email y una contrasena de al menos 8 caracteres para habilitar la vista.</p>
+          <form id="adminLoginForm" novalidate>
+            <div class="mb-3">
+              <label class="form-label">Email admin</label>
+              <input id="adminEmail" class="form-control" type="email" placeholder="admin@malibu.com" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Contrasena</label>
+              <input id="adminPassword" class="form-control" type="password" placeholder="Minimo 8 caracteres" required>
+            </div>
+            <div id="adminLoginFeedback" class="input-feedback"></div>
+            <div class="d-grid gap-3 mt-4">
+              <button class="btn-mali btn-gold w-100" type="submit"><i class="bi bi-box-arrow-in-right"></i>Entrar al panel</button>
+              <a class="btn-mali btn-outline-mali w-100" href="index.html"><i class="bi bi-arrow-left"></i>Volver a la tienda</a>
+            </div>
+          </form>
+        </aside>
+      </section>
+
+      <section id="adminDashboard" class="admin-dashboard admin-hidden">
+        <div class="glass-panel admin-toolbar">
+          <div class="admin-toolbar-title">
+            <span class="mini-label">Sesion activa</span>
+            <h3 class="mb-0">Panel listo para editar</h3>
+          </div>
+          <div class="admin-toolbar-actions">
+            <span class="admin-state-badge"><i class="bi bi-person-check"></i><span id="adminSessionEmail">admin@malibu.com</span></span>
+            <button id="adminLogoutBtn" class="btn-mali btn-outline-mali" type="button"><i class="bi bi-box-arrow-right"></i>Salir</button>
+          </div>
+        </div>
+
+        <div class="admin-stage">
+          <aside class="admin-section-card">
+            <div class="admin-section-heading">
+              <div>
+                <p class="mini-label mb-1">Productos</p>
+                <h4 class="mb-0">Editar o eliminar</h4>
+              </div>
+              <button id="newProductBtn" class="btn-mali btn-outline-mali" type="button"><i class="bi bi-plus-circle"></i>Nuevo</button>
+            </div>
+
+            <div id="adminProductsList" class="admin-products-list">
+              <article class="admin-product-item" data-product-id="prod-1" data-name="Rose Chain" data-category="Collar" data-price="$38.000" data-stock="12" data-desc="Cadena delicada con brillo calido para layering." data-image="img/display-shiny-elegant-gold-chain.jpg">
+                <img src="img/display-shiny-elegant-gold-chain.jpg" alt="Rose Chain">
+                <div>
+                  <div class="admin-product-head">
+                    <div class="admin-product-meta">
+                      <strong class="admin-product-name">Rose Chain</strong>
+                      <span class="mini-label admin-product-category">Collar</span>
+                    </div>
+                    <div class="admin-product-actions">
+                      <button class="admin-mini-btn admin-edit-btn" type="button" aria-label="Editar producto"><i class="bi bi-pencil"></i></button>
+                      <button class="admin-mini-btn admin-delete-btn" type="button" aria-label="Eliminar producto"><i class="bi bi-trash3"></i></button>
+                    </div>
+                  </div>
+                  <p class="admin-helper-text admin-product-copy mb-2">Cadena delicada con brillo calido para layering.</p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <strong class="admin-product-price">$38.000</strong>
+                    <span class="admin-helper-text">Stock <span class="admin-product-stock">12</span></span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="admin-product-item" data-product-id="prod-2" data-name="Pine Hoops" data-category="Aros" data-price="$24.500" data-stock="6" data-desc="Aros compactos con presencia limpia y tono intenso." data-image="img/aros-corazon-celeste(3).jpg">
+                <img src="img/aros-corazon-celeste(3).jpg" alt="Pine Hoops">
+                <div>
+                  <div class="admin-product-head">
+                    <div class="admin-product-meta">
+                      <strong class="admin-product-name">Pine Hoops</strong>
+                      <span class="mini-label admin-product-category">Aros</span>
+                    </div>
+                    <div class="admin-product-actions">
+                      <button class="admin-mini-btn admin-edit-btn" type="button" aria-label="Editar producto"><i class="bi bi-pencil"></i></button>
+                      <button class="admin-mini-btn admin-delete-btn" type="button" aria-label="Eliminar producto"><i class="bi bi-trash3"></i></button>
+                    </div>
+                  </div>
+                  <p class="admin-helper-text admin-product-copy mb-2">Aros compactos con presencia limpia y tono intenso.</p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <strong class="admin-product-price">$24.500</strong>
+                    <span class="admin-helper-text">Stock <span class="admin-product-stock">6</span></span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="admin-product-item" data-product-id="prod-3" data-name="Wine Set" data-category="Set" data-price="$59.900" data-stock="4" data-desc="Set de regalo con lectura editorial y piezas combinadas." data-image="img/display-shiny-luxurious-golden-chain.jpg">
+                <img src="img/display-shiny-luxurious-golden-chain.jpg" alt="Wine Set">
+                <div>
+                  <div class="admin-product-head">
+                    <div class="admin-product-meta">
+                      <strong class="admin-product-name">Wine Set</strong>
+                      <span class="mini-label admin-product-category">Set</span>
+                    </div>
+                    <div class="admin-product-actions">
+                      <button class="admin-mini-btn admin-edit-btn" type="button" aria-label="Editar producto"><i class="bi bi-pencil"></i></button>
+                      <button class="admin-mini-btn admin-delete-btn" type="button" aria-label="Eliminar producto"><i class="bi bi-trash3"></i></button>
+                    </div>
+                  </div>
+                  <p class="admin-helper-text admin-product-copy mb-2">Set de regalo con lectura editorial y piezas combinadas.</p>
+                  <div class="d-flex justify-content-between gap-3">
+                    <strong class="admin-product-price">$59.900</strong>
+                    <span class="admin-helper-text">Stock <span class="admin-product-stock">4</span></span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <form id="adminProductForm" class="admin-product-form">
+              <input id="productIdField" type="hidden">
+              <div class="admin-form-grid">
+                <div>
+                  <label class="form-label">Nombre del producto</label>
+                  <input id="productNameField" class="form-control" type="text" placeholder="Ej: Rose Chain">
+                </div>
+                <div>
+                  <label class="form-label">Categoria</label>
+                  <input id="productCategoryField" class="form-control" type="text" placeholder="Ej: Collar">
+                </div>
+                <div>
+                  <label class="form-label">Precio</label>
+                  <input id="productPriceField" class="form-control" type="text" placeholder="$38.000">
+                </div>
+                <div>
+                  <label class="form-label">Stock</label>
+                  <input id="productStockField" class="form-control" type="number" min="0" placeholder="12">
+                </div>
+              </div>
+              <div>
+                <label class="form-label">Imagen del producto</label>
+                <input id="productImageField" class="form-control" type="text" placeholder="img/producto.jpg">
+              </div>
+              <div>
+                <label class="form-label">Descripcion corta</label>
+                <textarea id="productDescField" class="form-control" rows="3" placeholder="Texto simple para la tarjeta del producto"></textarea>
+              </div>
+              <div class="d-flex flex-wrap gap-3">
+                <button class="btn-mali btn-gold" type="submit"><i class="bi bi-floppy"></i>Guardar producto</button>
+                <button id="resetProductBtn" class="btn-mali btn-outline-mali" type="button"><i class="bi bi-arrow-counterclockwise"></i>Limpiar</button>
+              </div>
+            </form>
+          </aside>
+
+          <div class="admin-preview-layout">
+            <section class="admin-section-card admin-set-builder">
+              <div class="admin-section-heading">
+                <div>
+                  <p class="mini-label mb-1">Sets</p>
+                  <h4 class="mb-0">Constructor simple</h4>
+                </div>
+                <span class="admin-helper-text">3 imagenes principales + 3 productos</span>
+              </div>
+
+              <form id="adminSetForm" class="admin-set-form">
+                <div class="admin-subsection">
+                  <h5>Info general</h5>
+                  <div class="admin-form-grid">
+                    <div>
+                      <label class="form-label">Nombre del set</label>
+                      <input id="setNameField" class="form-control" type="text" value="Rose Edit">
+                    </div>
+                    <div>
+                      <label class="form-label">Texto corto</label>
+                      <input id="setMoodField" class="form-control" type="text" value="Set de impacto con tono editorial y composicion limpia.">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="admin-subsection">
+                  <h5>Imagenes principales</h5>
+                  <div class="set-image-fields">
+                    <div class="set-image-card">
+                      <div class="admin-form-grid">
+                        <div>
+                          <label class="form-label">Etiqueta imagen 01</label>
+                          <input id="image1LabelField" class="form-control" type="text" value="Portada principal">
+                        </div>
+                        <div>
+                          <label class="form-label">Ruta o URL imagen 01</label>
+                          <input id="image1UrlField" class="form-control" type="text" value="img/display-shiny-luxurious-golden-chain.jpg">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="set-image-card">
+                      <div class="admin-form-grid">
+                        <div>
+                          <label class="form-label">Etiqueta imagen 02</label>
+                          <input id="image2LabelField" class="form-control" type="text" value="Detalle lateral">
+                        </div>
+                        <div>
+                          <label class="form-label">Ruta o URL imagen 02</label>
+                          <input id="image2UrlField" class="form-control" type="text" value="img/display-shiny-elegant-gold-chain.jpg">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="set-image-card">
+                      <div class="admin-form-grid">
+                        <div>
+                          <label class="form-label">Etiqueta imagen 03</label>
+                          <input id="image3LabelField" class="form-control" type="text" value="Cierre del set">
+                        </div>
+                        <div>
+                          <label class="form-label">Ruta o URL imagen 03</label>
+                          <input id="image3UrlField" class="form-control" type="text" value="img/expensive-golden-ring-displayed-white-coral-background.jpg">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="admin-subsection">
+                  <h5>Productos del set</h5>
+                  <div class="set-image-fields">
+                    <div class="set-product-card">
+                      <div class="admin-form-grid">
+                        <div>
+                          <label class="form-label">Producto 01</label>
+                          <input id="setProduct1NameField" class="form-control" type="text" value="Rose Chain">
+                        </div>
+                        <div>
+                          <label class="form-label">Precio 01</label>
+                          <input id="setProduct1PriceField" class="form-control" type="text" value="$38.000">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="set-product-card">
+                      <div class="admin-form-grid">
+                        <div>
+                          <label class="form-label">Producto 02</label>
+                          <input id="setProduct2NameField" class="form-control" type="text" value="Pine Hoops">
+                        </div>
+                        <div>
+                          <label class="form-label">Precio 02</label>
+                          <input id="setProduct2PriceField" class="form-control" type="text" value="$24.500">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="set-product-card">
+                      <div class="admin-form-grid">
+                        <div>
+                          <label class="form-label">Producto 03</label>
+                          <input id="setProduct3NameField" class="form-control" type="text" value="Wine Ring">
+                        </div>
+                        <div>
+                          <label class="form-label">Precio 03</label>
+                          <input id="setProduct3PriceField" class="form-control" type="text" value="$18.900">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </section>
+
+            <aside class="admin-section-card">
+              <div class="admin-section-heading">
+                <div>
+                  <p class="mini-label mb-1">Preview</p>
+                  <h4 class="mb-0">Como se veria el set</h4>
+                </div>
+                <span class="admin-helper-text">Se actualiza en vivo</span>
+              </div>
+
+              <div class="set-preview-shell">
+                <div class="set-preview-canvas">
+                  <div class="set-preview-main">
+                    <div class="preview-fill" data-preview-fill="image1"></div>
+                    <div class="preview-placeholder" data-preview-empty="image1">Imagen principal 01</div>
+                    <div class="set-preview-label">
+                      <span id="previewImage1Label">Portada principal</span>
+                      <h4 id="previewSetName">Rose Edit</h4>
+                      <p id="previewSetMood" class="mb-0">Set de impacto con tono editorial y composicion limpia.</p>
+                    </div>
+                  </div>
+
+                  <div class="set-preview-thumbs">
+                    <div class="set-preview-thumb">
+                      <div class="preview-fill" data-preview-fill="image2"></div>
+                      <div class="preview-placeholder" data-preview-empty="image2">Imagen principal 02</div>
+                      <div class="set-preview-label">
+                        <span id="previewImage2Label">Detalle lateral</span>
+                      </div>
+                    </div>
+                    <div class="set-preview-thumb">
+                      <div class="preview-fill" data-preview-fill="image3"></div>
+                      <div class="preview-placeholder" data-preview-empty="image3">Imagen principal 03</div>
+                      <div class="set-preview-label">
+                        <span id="previewImage3Label">Cierre del set</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="preview-product-list">
+                  <div class="preview-product-item">
+                    <div>
+                      <span class="mini-label d-block mb-1">Producto 01</span>
+                      <span id="previewProduct1Name">Rose Chain</span>
+                    </div>
+                    <strong id="previewProduct1Price">$38.000</strong>
+                  </div>
+                  <div class="preview-product-item">
+                    <div>
+                      <span class="mini-label d-block mb-1">Producto 02</span>
+                      <span id="previewProduct2Name">Pine Hoops</span>
+                    </div>
+                    <strong id="previewProduct2Price">$24.500</strong>
+                  </div>
+                  <div class="preview-product-item">
+                    <div>
+                      <span class="mini-label d-block mb-1">Producto 03</span>
+                      <span id="previewProduct3Name">Wine Ring</span>
+                    </div>
+                    <strong id="previewProduct3Price">$18.900</strong>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer-shell mt-0">
+    <div class="container">
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+        <span>&copy; <span id="year"></span> Malibu Joyeria. Panel administrativo de ejemplo.</span>
+        <span>Login, edicion de productos y constructor de sets con preview en vivo.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

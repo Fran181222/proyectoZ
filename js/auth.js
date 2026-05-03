@@ -67,6 +67,15 @@ $(function () {
     $(".auth-title").text(view === "login" ? "Ingresar a Malibu" : "Crear cuenta Malibu");
   };
 
+  $(".auth-form#loginForm .d-grid").each(function () {
+    const $container = $(this);
+    if (!$container.find(".admin-access-note").length) {
+      $container.append(
+        '<a class="admin-access-note" href="admin.html"><i class="bi bi-shield-lock"></i>Acceso administrador</a>'
+      );
+    }
+  });
+
   $("[data-auth-open]").on("click", function (event) {
     event.preventDefault();
     const view = $(this).data("authOpen") || "login";
@@ -80,7 +89,7 @@ $(function () {
     showView($(this).data("view"));
   });
 
-  $("input").on("input", function () {
+  $("#loginForm input, #registerForm input").on("input", function () {
     const keepSymbols = this.type === "password" || this.type === "email";
     if (this.type !== "password") {
       $(this).val(sanitizeInput($(this).val(), keepSymbols));

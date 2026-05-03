@@ -38,8 +38,8 @@
                 <div class="col-lg-3">
                   <div class="mega-card">
                     <span class="mini-label">Producto destacado</span>
-                    <h5 class="mt-3">Ficha completa con galeria, beneficios y CTA.</h5>
-                    <p class="mb-0 text-secondary">El mismo header te deja volver a productos, sets, menu y carrito.</p>
+                    <h5 class="mt-3">Ficha completa con galeria, talles y CTA compactos.</h5>
+                    <p class="mb-0 text-secondary">El mismo header te deja volver a productos, sets, menu, carrito y panel admin.</p>
                   </div>
                 </div>
                 <div class="col-lg-3 mega-links">
@@ -53,7 +53,7 @@
                   <h6 class="fw-bold mb-3">Accesos</h6>
                   <a href="producto.html">Producto destacado</a>
                   <a href="carrito.html">Carrito</a>
-                  <a href="#footer-contacto">Contacto</a>
+                  <a href="admin.html">Panel admin</a>
                   <a href="index.html">Inicio</a>
                 </div>
                 <div class="col-lg-3">
@@ -85,37 +85,60 @@
       <div class="row g-4 align-items-end mb-4">
         <div class="col-lg-8">
           <p class="section-tag"><span class="sprite-icon sprite-diamond"></span>MALIBU</p>
-          <!-- <h1 class="section-title mb-3">Coral Luxe, una pieza protagonista con presencia editorial.</h1>
-          <p class="section-copy mb-0">Esta pagina sirve como detalle de producto: una galeria amplia a la izquierda, informacion y CTA a la derecha, y el mismo sistema de header, acceso y carrito lateral.</p> -->
         </div>
       </div>
 
       <div class="detail-grid">
         <section class="glass-panel detail-gallery">
           <div class="detail-main-image">
-            <img src="img/aros-corazon-celeste.gif" alt="Aros Corazón Celeste">
+            <img src="img/aros-corazon-celeste.gif" alt="Aros Corazon Celeste">
           </div>
           <div class="detail-thumb-row">
-            <article class="detail-thumb">
-              <img src="img/aros-corazon-celeste(2).jpg" alt="Detalle 1">
+            <article class="detail-thumb active">
+              <button class="detail-thumb-toggle" type="button" data-image="img/aros-corazon-celeste.gif" data-alt="Aros Corazon Celeste vista frontal">
+                <img src="img/aros-corazon-celeste.gif" alt="Vista frontal del producto">
+              </button>
             </article>
             <article class="detail-thumb">
-              <img src="img/aros-corazon-celeste(3).jpg" alt="Detalle 2">
+              <button class="detail-thumb-toggle" type="button" data-image="img/aros-corazon-celeste(2).jpg" data-alt="Aros Corazon Celeste detalle lateral">
+                <img src="img/aros-corazon-celeste(2).jpg" alt="Detalle lateral del producto">
+              </button>
             </article>
             <article class="detail-thumb">
-              <img src="img/vista-arriba-cadenas-oro-naturaleza-muerta_23-2149560671.avif" alt="Detalle 3">
+              <button class="detail-thumb-toggle" type="button" data-image="img/aros-corazon-celeste(3).jpg" data-alt="Aros Corazon Celeste detalle de textura">
+                <img src="img/aros-corazon-celeste(3).jpg" alt="Detalle de textura del producto">
+              </button>
             </article>
           </div>
         </section>
 
         <aside class="glass-panel detail-info-card">
           <span class="section-tag mb-3"><i class="bi bi-stars"></i>Edicion premium</span>
-          <h2 class="mb-3">Aros Corazón Celeste</h2>
-          <p class="text-secondary">Aros de oro con diseño elegante y detalles que resaltan la belleza natural del coral.</p>
+          <h2 class="mb-3">Aros Corazon Celeste</h2>
+          <p class="text-secondary">Aros con terminacion brillante, silueta delicada y una lectura suave que eleva la pieza sin recargarla.</p>
           <div class="detail-price mb-3">$2.600</div>
           <div class="d-flex flex-wrap gap-2 mb-4">
             <span class="metal-badge metal-gold"><i class="bi bi-sun"></i>Oro</span>
             <span class="metal-badge metal-gold"><i class="bi bi-gem"></i>Aros</span>
+          </div>
+          <div class="detail-selector-row mb-3">
+            <div class="selector-label-group">
+              <span class="selector-label">Talle</span>
+              <span class="size-helper">Compacto, en una sola fila</span>
+            </div>
+            <div class="size-selector" role="group" aria-label="Seleccion de talle">
+              <button class="size-chip" type="button">12</button>
+              <button class="size-chip active" type="button">14</button>
+              <button class="size-chip" type="button">16</button>
+              <button class="size-chip" type="button">18</button>
+            </div>
+          </div>
+          <div class="detail-note-card mb-4">
+            <div>
+              <span class="mini-label d-block mb-1">Disponibilidad inmediata</span>
+              <p class="mb-0 text-secondary">Packaging de regalo y despacho listo dentro de 24 a 48 horas.</p>
+            </div>
+            <strong class="selected-size-label">Talle 14</strong>
           </div>
           <div class="d-grid gap-3 mb-4">
             <button class="btn-mali btn-gold w-100" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer"><i class="bi bi-bag-plus"></i>Agregar al carrito</button>
@@ -136,7 +159,7 @@
       <div class="row g-4">
         <div class="col-lg-4">
           <div class="footer-card h-100">
-            <p class="section-tag mb-3"><span class="sprite-icon sprite-crown"></span>Malibu Producto</p>
+            <p class="section-tag mb-3">Malibu Producto</p>
             <h3 class="mb-3">Ficha detallada, misma experiencia.</h3>
             <p class="mb-4">El header, el acceso de usuario y el carrito lateral se mantienen iguales en todas las paginas.</p>
             <div class="social-row">
@@ -159,14 +182,17 @@
         <div class="col-lg-4">
           <div class="footer-card h-100">
             <h4 class="mb-3">Acceso rapido</h4>
-            <p class="mb-4">Abre el modal para iniciar sesion o crear cuenta mientras navegas la ficha.</p>
-            <a class="btn-mali btn-gold" href="#" data-auth-open="login"><i class="bi bi-person"></i>Entrar</a>
+            <p class="mb-4">Abre el modal para iniciar sesion o entra directo al panel administrador.</p>
+            <div class="d-grid gap-3">
+              <a class="btn-mali btn-gold" href="#" data-auth-open="login"><i class="bi bi-person"></i>Entrar</a>
+              <a class="btn-mali btn-outline-mali" href="admin.html"><i class="bi bi-shield-lock"></i>Panel admin</a>
+            </div>
           </div>
         </div>
       </div>
       <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
         <span>&copy; <span id="year"></span> Malibu Joyeria. Todos los derechos reservados.</span>
-        <span>Ficha individual con galeria, CTA y carrito lateral consistente.</span>
+        <span>Ficha individual con galeria, talle compacto y carrito lateral consistente.</span>
       </div>
     </div>
   </footer>
