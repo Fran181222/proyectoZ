@@ -145,7 +145,7 @@ img {
   top: 0;
   z-index: 1020;
   backdrop-filter: blur(18px);
-  background: rgba(16, 43, 31, 0.84);
+  background: #4d0011;
   border-bottom: 1px solid rgba(255, 217, 217, 0.1);
 }
 
@@ -1381,9 +1381,9 @@ img {
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  background-image: url("../img/social-sprite.svg");
+  background-image: url("../img/media-social.svg");
   background-repeat: no-repeat;
-  background-size: 192px 48px;
+  background-size: 343px 218px;
   box-shadow: 0 8px 20px rgba(18, 52, 88, 0.18);
   transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
 }
@@ -1396,19 +1396,15 @@ img {
 }
 
 .sprite-facebook {
-  background-position: 0 0;
+  background-position: -41px -20px;
 }
 
-.sprite-x {
-  background-position: -48px 0;
+.sprite-whatsapp {
+  background-position: -183px -20px;
 }
 
 .sprite-instagram {
-  background-position: -96px 0;
-}
-
-.sprite-linkedin {
-  background-position: -144px 0;
+  background-position: -112px -19px;
 }
 
 .auth-body {
